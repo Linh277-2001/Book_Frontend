@@ -1,7 +1,7 @@
 import React from "react"
 
 import FlashDeals from "../components/flashDeals/FlashDeals"
-import TopCate from "../components/top/TopCate"
+// import TopCate from "../components/top/TopCate"
 import Shop from "../components/shops/Shop"
 import Wrapper from "../components/wrapper/Wrapper"
 
@@ -10,7 +10,7 @@ const Pages = ({ productItems, addToCart, shopItems }) => {
     <>
 
       <FlashDeals productItems={productItems} addToCart={addToCart} />
-      <TopCate />
+      {/* <TopCate /> */}
       <Shop shopItems={shopItems} addToCart={addToCart} />
       <Wrapper />
     </>
