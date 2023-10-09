@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./common/header/Header";
-import Pages from "./pages/Pages";
-import Data from "./components/Data";
 import Cart from "./common/Cart/Cart";
 import Footer from "./common/footer/Footer";
+
+import Pages from "./pages/Pages";
+
+import User from "./components/user/User";
+
+import Data from "./components/Data";
 import Sdata from "./components/shops/Sdata";
 
 function App() {
@@ -58,6 +62,9 @@ function App() {
           <Route path="/cart" exact>
             {/* Step 2: Pass removeFromCart as a prop */}
             <Cart CartItem={CartItem} addToCart={addToCart} decreaseQty={decreaseQty} removeFromCart={removeFromCart} />
+          </Route>
+          <Route path="/user">
+            <User/>
           </Route>
         </Switch>
         <Footer />
