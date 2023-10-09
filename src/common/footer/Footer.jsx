@@ -7,7 +7,7 @@ const Footer = () => {
       <footer>
         <div className='container grid2'>
           <div className='box'>
-            <h1>Bonik</h1>
+            <h1>Book Store</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor libero id et, in gravida. Sit diam duis mauris nulla cursus. Erat et lectus vel ut sollicitudin elit at amet.</p>
             <div className='icon d_flex'>
               <div className='img d_flex'>
@@ -44,9 +44,9 @@ const Footer = () => {
           <div className='box'>
             <h2>Contact Us</h2>
             <ul>
-              <li>70 Washington Square South, New York, NY 10012, United States </li>
-              <li>Email: uilib.help@gmail.com</li>
-              <li>Phone: +1 1123 456 780</li>
+              <li>Ha Noi, Viet Nam</li>
+              <li>Email: bookstore.help@gmail.com</li>
+              <li>Phone: +84 123 456 789</li>
             </ul>
           </div>
         </div>
