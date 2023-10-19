@@ -53,7 +53,7 @@ const FlashCard = ({ addToCart }) => {
           id: book.id,
           cover: book.photo ,
           name: book.name,
-          price: 100,
+          price: book.price,
           discount: 10,
         }));
 
@@ -77,7 +77,7 @@ const FlashCard = ({ addToCart }) => {
                   <img style={{maxWidth:200, marginLeft:42}} src={'http://localhost:5173/'+item.cover} alt="Không tìm thấy ảnh" />
                   <div className="product-like">
                     <label>{count}</label> <br />
-                    <i className="fa-regular fa-heart" onClick={increment}></i>
+                    <i className="fa-regular fa-heart" onClick={increment}></i> 
                   </div>
                 </div>
                 <div className="product-details">

@@ -18,7 +18,7 @@ const ShopCart = ({ addToCart }) => {
           id: book.id,
           cover: book.photo,
           name: book.name,
-          price: 100,
+          price: book.price,
           discount: 10,
         }));
 
