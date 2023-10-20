@@ -1,0 +1,10 @@
+.addbtn{
+    margin: 15px;
+    font-size: 30px;
+    color: #e94560;
+    border: 3px;
+    padding: 3px;
+    background-color: #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+}

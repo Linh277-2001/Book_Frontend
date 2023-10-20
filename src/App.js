@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./common/header/Header";
 import Cart from "./common/Cart/Cart";
+import ProductDetail  from "./common/Book/ProductDetail";
 import Footer from "./common/footer/Footer";
 
 import Pages from "./pages/Pages";
@@ -65,6 +66,9 @@ function App() {
           </Route>
           <Route path="/user">
             <User/>
+          </Route>
+          <Route path="/book/:id">
+            <ProductDetail addToCart={addToCart} />
           </Route>
         </Switch>
         <Footer />

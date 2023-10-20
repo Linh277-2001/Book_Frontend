@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} from "react-router-dom";
 
 const ShopCart = ({ addToCart }) => {
   const [shopItems, setShopItems] = useState([]);
@@ -38,8 +39,9 @@ const ShopCart = ({ addToCart }) => {
             <div className="product mtop">
               <div className="img">
                 <span className="discount">{item.discount}% Off</span>
-                <img src={'http://localhost:5173/'+item.cover} alt='Không tìm thấy ảnh' />
-                {/* <p>{'http://localhost:5173/'+shopItems.cover}</p> */}
+                <Link to={`./book/${item.id}`}>
+                  <img src={'http://localhost:5173/'+item.cover} alt='Không tìm thấy ảnh' />
+                </Link>
                 <div className="product-like">
                   <label>{count}</label> <br />
                   <i className="fa-regular fa-heart" onClick={increment}></i>

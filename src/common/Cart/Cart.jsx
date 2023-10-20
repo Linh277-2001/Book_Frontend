@@ -13,6 +13,11 @@ const Cart = ({ CartItem, addToCart, decreaseQty, removeFromCart }) => {
   );
 
   const handlePay = () => {
+    // Kiểm tra xem địa chỉ và số điện thoại có được nhập không
+    if (address.trim() === "" || phone.trim() === "") {
+      alert("Please enter address and phone number before payment.");
+      return;
+    }
     // Tạo một đối tượng chứa thông tin cần gửi lên API
     const data = {
       orderDescription: "New Order",
