@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./style.css";
-// import { hover } from "@testing-library/user-event/dist/hover";
+import { ShoppingOutlined } from '@ant-design/icons';
+import { Button} from 'antd';
+import {Link} from "react-router-dom";
 
 const Cart = ({ CartItem, addToCart, decreaseQty, removeFromCart }) => {
 
@@ -15,7 +17,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty, removeFromCart }) => {
   const handlePay = () => {
     // Kiểm tra xem địa chỉ và số điện thoại có được nhập không
     if (address.trim() === "" || phone.trim() === "") {
-      alert("Please enter address and phone number before payment.");
+      alert("Please enter Address and Phone Number");
       return;
     }
     // Tạo một đối tượng chứa thông tin cần gửi lên API
@@ -25,8 +27,8 @@ const Cart = ({ CartItem, addToCart, decreaseQty, removeFromCart }) => {
         bookId: item.id,
         quantity: item.qty,
       })),
-      userEmail: "linh555@gmail.com",
-      userName: "linh555",
+      userEmail: "linh777@gmail.com",
+      userName: "linh777",
       address,
       phone,
     };
@@ -56,10 +58,15 @@ const Cart = ({ CartItem, addToCart, decreaseQty, removeFromCart }) => {
   return (
     <>
       <section className='cart-items'>
+        <Link to="./history">
+          <Button type="primary" style={{backgroundColor: "#5d728f", marginLeft: "86px"}} icon={<ShoppingOutlined />} >
+            History
+          </Button>
+        </Link>
         <div className='container d_flex'>
           <div className='cart-details'>
             {CartItem.length === 0 && (
-              <h1 className='no-items product'>No Items are added in Cart</h1>
+              <h1 className='no-items product'>No Items in Cart</h1>
             )}
 
             {CartItem.map((item) => {

@@ -1,94 +1,76 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./User.css"; // Import CSS file for styling
+import "./User.css";
 
 const User = () => {
-  // State để lưu trữ thông tin user
+  // State để lưu trữ thông tin user và mật khẩu mới
   const [userData, setUserData] = useState({
     username: "",
     password: "",
-    image: "",
-    address: "",
   });
+
+  const [newPassword, setNewPassword] = useState("");
 
   // Sử dụng useEffect để gọi API khi component được tải
   useEffect(() => {
     // Gọi API để lấy thông tin user
-    axios.get("http://localhost:8080/api/admin/1")
+    axios
+      .get("http://localhost:8080/api/admin/25")
       .then((response) => {
-        const { username, password, image, address } = response.data;
-        setUserData({ username, password, image, address });
+        const { username, password } = response.data;
+        setUserData({ username, password });
       })
       .catch((error) => {
         console.error("Error fetching user data: ", error);
       });
   }, []); // [] để đảm bảo gọi API chỉ xảy ra một lần khi component được tải
 
-  // Hàm xử lý sự kiện khi người dùng thay đổi giá trị trong input
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
-  };
-
-  // Hàm xử lý khi người dùng nhấn nút "Update"
-  const handleUpdate = () => {
-    // Gửi dữ liệu cập nhật lên API
-    axios.put("http://localhost:8080/api/admin/1", userData)
-      .then((response) => {
-        console.log("User data updated successfully:", response.data);
-        // Cập nhật thành công, bạn có thể thực hiện các hành động khác nếu cần
-      })
-      .catch((error) => {
-        console.error("Error updating user data: ", error);
-      });
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      // Xây dựng URL với newPassword được đính kèm
+      const url = `http://localhost:8080/api/user/changePassword/25?newPassWord=${newPassword}`;      
+      // Gửi yêu cầu đổi mật khẩu đến API
+      const response = await axios.put(url);
+      console.log("Thành công: ", response);
+      setNewPassword('');
+      alert("Thay đổi mật khẩu thành công");
+    } catch (error) {
+      console.error("Lỗi thay đổi mật khẩu: ", error);
+      console.log(newPassword);
+      alert("Thay đổi mật khẩu không thành công");
+    }
   };
 
   return (
     <>
-    <h2 style={{paddingLeft: '45%',marginBottom: '10px'}}>User Profile</h2>
-    <div style={{marginBottom:'20px'}} className="user-container">
-      {/* <h1>User Profile</h1> */}
-      <div className="user-form">
-        <div className="form-group">
-          <label>Username:</label>
-          <input
-            type="text"
-            name="username"
-            value={userData.username}
-            onChange={handleInputChange}
-          />
+      <h2 style={{ paddingLeft: "43%", marginBottom: "10px" }}>Change Password</h2>
+      <div style={{ marginBottom: "20px" }} className="user-container">
+        <div className="user-form">
+          <div className="form-group">
+            <label>Username:</label>
+            <input
+              type="text"
+              name="username"
+              value={userData.username}
+              readOnly
+            />
+          </div>
+          <div className="form-group">
+            <label>New Password:</label>
+            <input
+              type="password"
+              placeholder="New password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button className="update-button" onClick={handleUpdate}>
+            Update
+          </button>
         </div>
-        <div className="form-group">
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={userData.password}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Image URL:</label>
-          <input
-            type="text"
-            name="image"
-            value={userData.image}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Address:</label>
-          <textarea
-            name="address"
-            value={userData.address}
-            onChange={handleInputChange}
-          />
-        </div>
-        <button className="update-button" onClick={handleUpdate}>
-          Update
-        </button>
       </div>
-    </div>
     </>
   );
 };

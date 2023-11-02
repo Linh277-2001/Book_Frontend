@@ -13,6 +13,10 @@
 }
 /*------head-----------*/
 /*------search-----------*/
+.search_input{
+  padding-top: 10px;
+  padding-right: 10px;
+}
 .search {
   padding: 20px 0;
 }

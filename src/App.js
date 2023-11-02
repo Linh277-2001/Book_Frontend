@@ -3,12 +3,16 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./common/header/Header";
 import Cart from "./common/Cart/Cart";
+import History from "./common/History/History";
+import HistoryDetail from "./common/History/HistoryDetail";
 import ProductDetail  from "./common/Book/ProductDetail";
 import Footer from "./common/footer/Footer";
 
 import Pages from "./pages/Pages";
 
 import User from "./components/user/User";
+
+import Search1 from "./common/SearchResult/SearchResult";
 
 import Data from "./components/Data";
 import Sdata from "./components/shops/Sdata";
@@ -47,7 +51,6 @@ function App() {
     }
   };
 
-  // Step 1: Define removeFromCart function
   const removeFromCart = (productId) => {
     setCartItem(CartItem.filter((item) => item.id !== productId));
   };
@@ -64,8 +67,17 @@ function App() {
             {/* Step 2: Pass removeFromCart as a prop */}
             <Cart CartItem={CartItem} addToCart={addToCart} decreaseQty={decreaseQty} removeFromCart={removeFromCart} />
           </Route>
+          <Route path="/history">
+            <History/>
+          </Route>
+          <Route path="/historydetail/:id">
+            <HistoryDetail/>
+          </Route>
           <Route path="/user">
             <User/>
+          </Route>
+          <Route path="/search/:query">
+            <Search1/>
           </Route>
           <Route path="/book/:id">
             <ProductDetail addToCart={addToCart} />
